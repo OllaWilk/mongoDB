@@ -41,10 +41,8 @@ router.put('/employees/:id', (req, res) => {
 });
 
 router.delete('/employees/:id', (req, res) => {
-  req.db.collection('employees').deleteOne({ _id: ObjectId(req.params.id) }, err => {
-    if(err) res.status(500).json({ message: err });
-    else res.json({ message: 'OK' });
-  })
+  db = db.employees.filter(item => item.id != req.params.id)
+  res.json({ message: 'OK' });
 });
 
 module.exports = router;
