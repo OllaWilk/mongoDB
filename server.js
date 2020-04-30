@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const mongoClient = require('mongodb').MongoClient;
 
 const employeesRoutes = require('./routes/employees.routes');
 const departmentsRoutes = require('./routes/departments.routes');
@@ -10,6 +11,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+mongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
+  if (err){
+    console.log(err);
+  }
+  else {
+    console.log('Successfully connected to the database');
+  }
+});
 
 
 app.use('/api', employeesRoutes);
