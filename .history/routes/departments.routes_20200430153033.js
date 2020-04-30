@@ -11,10 +11,7 @@ router.get('/departments', (req, res) => {
 });
 
 router.get('/departments/random', (req, res) => {
-  req.db.collection('departments').aggregate([ { $sample: { size: 1 } } ]).toArray((err, data) => {
-    if(err) res.status(500).json({ message: err });
-    else res.json(data[0]);
-  });
+  res.json(db.departments[Math.floor(Math.random() * db.length)]);
 });
 
 router.get('/departments/:id', (req, res) => {
@@ -31,6 +28,8 @@ router.post('/departments', (req, res) => {
     if(err) res.status(500).json({ message: err });
     else res.json({ message: 'OK' });
   })
+  /*db.departments.push({ id: 3, name })
+  res.json({ message: 'OK' });*/
 });
 
 router.put('/departments/:id', (req, res) => {
@@ -39,13 +38,13 @@ router.put('/departments/:id', (req, res) => {
     if(err) res.status(500).json({ message: err });
     else res.json({ message: 'OK' });
   })
+  /*db = db.departments.map(item => (item.id == req.params.id) ? { ...item, name } : item );
+  res.json({ message: 'OK' });*/
 });
 
 router.delete('/departments/:id', (req, res) => {
-  req.db.collection('departments').deleteOne({ _id: ObjectId(req.params.id) }, err => {
-    if(err) res.status(500).json({ message: err });
-    else res.json({ message: 'OK' });
-  })
+  db = db.departments.filter(item => item.id != req.params.id)
+  res.json({ message: 'OK' });
 });
 
 module.exports = router;
