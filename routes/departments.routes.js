@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const ObjectId = require('mongodb').ObjectId;
 const Department = require('../models/department.model');
 
 router.get('/departments', async (req, res) => {
@@ -23,7 +22,6 @@ router.get('/departments/random', async (req, res) => {
   catch(err) {
     res.status(500).json({ message: err });
   }
-
 });
 
 router.get('/departments/:id', async (req, res) => {
@@ -35,7 +33,6 @@ router.get('/departments/:id', async (req, res) => {
   catch(err) {
     res.status(500).json({ message: err });
   }
-
 });
 
 router.post('/departments', async (req, res) => {
@@ -49,7 +46,6 @@ router.post('/departments', async (req, res) => {
   } catch(err) {
     res.status(500).json({ message: err });
   }
-
 });
 
 router.put('/departments/:id', async (req, res) => {
@@ -65,7 +61,6 @@ router.put('/departments/:id', async (req, res) => {
   catch(err) {
     res.status(500).json({ message: err });
   }
-
 });
 
 router.delete('/departments/:id', async (req, res) => {
@@ -80,7 +75,6 @@ router.delete('/departments/:id', async (req, res) => {
   catch(err) {
     res.status(500).json({ message: err });
   }
-
 });
 
 
