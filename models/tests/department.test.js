@@ -26,7 +26,7 @@ describe('Department', () => {
 
     it('"name" should contein 5-20 letters', () => {
 
-        const cases = ['Abcd', 'abcde fghit klmnoprstuwx']; // a to jest bez sensu.. a co jak max liczba liter to 200?
+        const cases = ['Abcd', 'abcde fghit klmnoprstuwx'];
 
         for(let name of cases) {
           const dep = new Department({ name });

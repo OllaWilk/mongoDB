@@ -5,18 +5,18 @@ const mongoose = require('mongoose');
 
 
 describe('Department', () => {
-    before(async () => {
+  before(async () => {
 
-        try {
-          const fakeDB = new MongoMemoryServer();
+    try {
+      const fakeDB = new MongoMemoryServer();
 
-          const uri = await fakeDB.getConnectionString();
+      const uri = await fakeDB.getConnectionString();
 
-          mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+      mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-        } catch(err) {
-          console.log(err);
-        }
+    } catch(err) {
+      console.log(err);
+    }
+  });
 
-    });
 });
