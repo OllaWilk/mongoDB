@@ -28,7 +28,7 @@ describe('Employee', () => {
         firstName: "Kuba",
         lastName: "Wilk",
         department: {
-          name: "IT"   //!!!!!!
+          name: "qualityDepartment"   //!!!!!! ma być string
         }
       });
       await testEmpOne.save();
@@ -36,8 +36,8 @@ describe('Employee', () => {
       const testEmpTwo = new Employee({
         firstName: "ola",
         lastName: "Agha",
-        department: {
-            name: "PR"
+        department:{
+            name: "qualityDepartment"
         }
       });
       await testEmpTwo.save();
@@ -64,6 +64,7 @@ describe('Employee', () => {
     it('should return all the data with "find" method', async () => {
 
       const employees = await Employee.find();
+      //const clusterDepartment = await Employee.find({department: {name: "qualityDepartment"}})
       const clusterDepartment = await Employee.find({department: "name: qualityDepartment"})
 
       expect(employees.length).to.be.equal(3);
