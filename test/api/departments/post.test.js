@@ -1,6 +1,7 @@
-const expect = require('chai').expect;
+/*const expect = require('chai').expect;
 const chaiHttp = require('chai-http');
-const server = require('../../server.js');
+const server = require('../../../server');
+const Department = require('../../../models/department.model');
 
 chai.use(chaiHttp);
 
@@ -9,4 +10,4 @@ const request = chai.request;
 
 describe('POST /api/departments', () => {
 
-});
+});*/

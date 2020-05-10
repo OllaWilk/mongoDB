@@ -22,49 +22,65 @@ describe('Employee', () => {
 
   describe('Reading data', () => {
 
-    before(async () => {
-      const testEmpOne = new Employee({
+    beforeEach(async () => { //before zastąp beforeEach
+
+      /* const testEmpOne = new Employee({
+        firstName: "Kuba",
+        lastName: "Wilk",
+        department: {
+          name: "IT"   //!!!!!!
+        }
+      });
+      await testEmpOne.save();
+
+      const testEmpTwo = new Employee({
+        firstName: "ola",
+        lastName: "Agha",
+        department: {
+            name: "PR"
+        }
+      });
+      await testEmpTwo.save();
+    */
+    const testEmpOne = new Employee({
         firstName: 'Ola',
         lastName: 'Wilk',
-        department: 'Testing'
+        department: 'name: qualityDepartment'
       });
       await testEmpOne.save();
 
       const testEmpTwo = new Employee({
         firstName: 'Marek',
         lastName: 'Jelon',
-        department: 'IT'
+        department: 'name: qualityDepartment'
       });
       await testEmpTwo.save();
+
+    });
+  afterEach(async () => { //dodaj afterEach
+    await Employee.deleteMany();
   });
 
     it('should return all the data with "find" method', async () => {
-      /*const employees = await Employee.find();
-      const expectedLength = 2;
-      expect(employees.length).to.be.equal(expectedLength);
-      */
-      //!!! DLACZEGO ZŁAPANE W TRY{} CATCH{} DZIAŁA A TAK JAK POWYŻEJ NIE DZIAŁA
-      try {
-        const employees = await Employee.find();
-        const expectedLength = 2;
-        expect(employees.length).to.be.equal(expectedLength);
-      } catch(err) {
-        console.log(err);
-      }
+
+      const employees = await Employee.find();
+      const clusterDepartment = await Employee.find({department: "name: qualityDepartment"})
+
+      expect(employees.length).to.be.equal(3);
+      expect(clusterDepartment.length).to.be.equal(2);
 
     });
-
 
     it('should return proper document by various params with "findOne" method.', async () => {
 
       try {
         const nameTest = await Employee.findOne({ firstName: 'Ola' });
         const lastNameTest = await Employee.findOne({ lastName: 'Wilk' });
-        const depTest = await Employee.findOne({ department: 'Testing' });
+        const depTest = await Employee.findOne({ department: 'name: qualityDepartment' });
 
         const expectedName = 'Ola';
         const expectedLastName = 'Wilk';
-        const expectedDep = 'Testing';
+        const expectedDep = 'name: qualityDepartment';
 
         expect(nameTest.firstName).to.be.equal(expectedName);
         expect(lastNameTest.lastName).to.be.equal(expectedLastName);
@@ -72,11 +88,6 @@ describe('Employee', () => {
       } catch(err) {
         console.log(err);
       }
-    });
-
-
-    after(async () => {
-      await Employee.deleteMany();
     });
   });
 
