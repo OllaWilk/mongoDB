@@ -25,8 +25,8 @@ describe('Employee', () => {
     beforeEach(async () => { //before zastąp beforeEach
 
        const testEmpOne = new Employee({
-        firstName: "Kuba",
-        lastName: "Wilk",
+        firstName: 'Ola',
+        lastName: 'Wilk',
         department: {
           name: "qualityDepartment"
         }
@@ -34,14 +34,14 @@ describe('Employee', () => {
       await testEmpOne.save();
 
       const testEmpTwo = new Employee({
-        firstName: "ola",
-        lastName: "Agha",
+        firstName: 'Marek',
+        lastName: 'Jelon',
         department:{
             name: "qualityDepartment"
         }
       });
       await testEmpTwo.save();
-
+    });
 
     /*
     const testEmpOne = new Employee({
@@ -57,9 +57,8 @@ describe('Employee', () => {
         department: 'name: qualityDepartment'
       });
       await testEmpTwo.save();
-    */
     });
-
+    */
 
 
   afterEach(async () => { //dodaj afterEach
@@ -80,7 +79,7 @@ describe('Employee', () => {
     it('should return proper document by various params with "findOne" method.', async () => {
 
       try {
-        const nameTest = await Employee.findOne({ firstName: 'Ola' });
+        const nameTest = await Employee.findOne({  firstName: 'Ola',});
         const lastNameTest = await Employee.findOne({ lastName: 'Wilk' });
         const depTest = await Employee.findOne({ department: 'name: qualityDepartment' });
 
