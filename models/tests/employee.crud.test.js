@@ -24,11 +24,11 @@ describe('Employee', () => {
 
     beforeEach(async () => { //before zastąp beforeEach
 
-      /* const testEmpOne = new Employee({
+       const testEmpOne = new Employee({
         firstName: "Kuba",
         lastName: "Wilk",
         department: {
-          name: "qualityDepartment"   //!!!!!! ma być string
+          name: "qualityDepartment"
         }
       });
       await testEmpOne.save();
@@ -41,7 +41,9 @@ describe('Employee', () => {
         }
       });
       await testEmpTwo.save();
-    */
+
+
+    /*
     const testEmpOne = new Employee({
         firstName: 'Ola',
         lastName: 'Wilk',
@@ -55,8 +57,11 @@ describe('Employee', () => {
         department: 'name: qualityDepartment'
       });
       await testEmpTwo.save();
-
+    */
     });
+
+
+
   afterEach(async () => { //dodaj afterEach
     await Employee.deleteMany();
   });
@@ -64,11 +69,11 @@ describe('Employee', () => {
     it('should return all the data with "find" method', async () => {
 
       const employees = await Employee.find();
-      //const clusterDepartment = await Employee.find({department: {name: "qualityDepartment"}})
-      const clusterDepartment = await Employee.find({department: "name: qualityDepartment"})
+      const clusterDepartment = await Employee.find({department: {name: "qualityDepartment"}})
+      //const clusterDepartment = await Employee.find({department: "name: qualityDepartment"})
 
       expect(employees.length).to.be.equal(3);
-      expect(clusterDepartment.length).to.be.equal(2);
+      expect(clusterDepartment.length).to.be.equal(1);
 
     });
 
