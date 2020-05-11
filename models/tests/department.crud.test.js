@@ -13,7 +13,7 @@ describe('Department', () => {
 
       const uri = await fakeDB.getConnectionString();
 
-      mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+      await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
     } catch(err) {
       console.log(err);

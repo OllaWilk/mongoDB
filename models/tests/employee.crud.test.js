@@ -13,7 +13,7 @@ describe('Employee', () => {
 
       const uri = await employeeDB.getConnectionString();
 
-      mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+      await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
     } catch(err) {
       console.log(err);
@@ -71,8 +71,8 @@ describe('Employee', () => {
       const clusterDepartment = await Employee.find({department: {name: "qualityDepartment"}})
       //const clusterDepartment = await Employee.find({department: "name: qualityDepartment"})
 
-      expect(employees.length).to.be.equal(3);
-      expect(clusterDepartment.length).to.be.equal(1);
+      expect(employees.length).to.be.equal(2);
+      expect(clusterDepartment.length).to.be.equal(2);
 
     });
 
