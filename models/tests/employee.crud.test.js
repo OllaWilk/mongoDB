@@ -43,23 +43,6 @@ describe('Employee', () => {
       await testEmpTwo.save();
     });
 
-    /*
-    const testEmpOne = new Employee({
-        firstName: 'Ola',
-        lastName: 'Wilk',
-        department: 'name: qualityDepartment'
-      });
-      await testEmpOne.save();
-
-      const testEmpTwo = new Employee({
-        firstName: 'Marek',
-        lastName: 'Jelon',
-        department: 'name: qualityDepartment'
-      });
-      await testEmpTwo.save();
-    });
-    */
-
 
   afterEach(async () => { //dodaj afterEach
     await Employee.deleteMany();
@@ -69,7 +52,6 @@ describe('Employee', () => {
 
       const employees = await Employee.find();
       const clusterDepartment = await Employee.find({department: {name: "qualityDepartment"}})
-      //const clusterDepartment = await Employee.find({department: "name: qualityDepartment"})
 
       expect(employees.length).to.be.equal(2);
       expect(clusterDepartment.length).to.be.equal(2);
@@ -81,15 +63,18 @@ describe('Employee', () => {
       try {
         const nameTest = await Employee.findOne({  firstName: 'Ola',});
         const lastNameTest = await Employee.findOne({ lastName: 'Wilk' });
-        const depTest = await Employee.findOne({ department: 'name: qualityDepartment' });
+        const depTest = await Employee.findOne({ department:  { name: 'qualityDepartment' } });
 
         const expectedName = 'Ola';
         const expectedLastName = 'Wilk';
-        const expectedDep = 'name: qualityDepartment';
+        //const expectedDep = 'qualityDepartment'
 
         expect(nameTest.firstName).to.be.equal(expectedName);
         expect(lastNameTest.lastName).to.be.equal(expectedLastName);
-        expect(depTest.lastName).to.be.equal(expectedDep);
+        expect(depTest.lastName).to.be.equal(expectedLastName);
+
+        //expect(depTest.department.name).to.be.equal(expectedDep);
+
       } catch(err) {
         console.log(err);
       }

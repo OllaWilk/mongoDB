@@ -10,7 +10,10 @@ const request = chai.request;
 
 describe('DELETE /api/departments', () => {
     before(async () => {
-      const testDepOne = new Department({ _id: '5d9f1140f10a81216cfd4408', name: 'Department #1' });
+      const testDepOne = new Department({
+        _id: '5d9f1140f10a81216cfd4408',
+        name: 'Department #1'
+      });
       await testDepOne.save();
     });
 
